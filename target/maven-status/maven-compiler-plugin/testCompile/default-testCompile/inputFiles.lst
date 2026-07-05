@@ -1,0 +1,7 @@
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/BaseIT.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/JwtNimbusJoseApplicationTests.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/service/aviso/AvisoServiceTest.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/service/pessoa/PessoaServiceIT.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/service/pessoa/PessoaServiceTest.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/service/roles/RolesServiceIT.java
+/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/jwt-nimbus-jose/src/test/java/com/github/igomarcelino/jwt_nimbus_jose/service/roles/RolesServiceTest.java

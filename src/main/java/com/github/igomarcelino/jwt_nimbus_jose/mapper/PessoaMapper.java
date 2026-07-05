@@ -16,9 +16,11 @@ public interface PessoaMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "senha", ignore = true)
     Pessoa toEntity(PessoaRequestDTO dto);
 
-    @Mapping(target = "roles", source = "roles", qualifiedByName="rolesName")
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "roles", source = "roles", qualifiedByName = "rolesName")
     PessoaResponseDTO toDto(Pessoa pessoa);
 
     @Named("rolesName")

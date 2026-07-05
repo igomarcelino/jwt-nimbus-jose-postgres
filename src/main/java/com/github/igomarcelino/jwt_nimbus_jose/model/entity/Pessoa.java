@@ -1,10 +1,8 @@
 package com.github.igomarcelino.jwt_nimbus_jose.model.entity;
 
-import com.github.igomarcelino.jwt_nimbus_jose.model.enums.RoleName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.HashSet;
@@ -15,6 +13,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Pessoa {
 
     @Id
@@ -39,10 +38,8 @@ public class Pessoa {
     @JoinTable(name = "pessoa_role",
                joinColumns = @JoinColumn(name = "id_pessoa"),
                 inverseJoinColumns = @JoinColumn(name="id_role"))
+    @Setter
     private Set<Roles> roles = new HashSet<>();
 
-    public void addRole(Roles role){
-        this.roles.add(role);
-    }
 
 }
