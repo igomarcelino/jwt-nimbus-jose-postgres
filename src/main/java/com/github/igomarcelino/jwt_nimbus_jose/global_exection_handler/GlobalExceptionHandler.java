@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -89,6 +90,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(responseError,HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+    public ResponseEntity<ResponseError> handleAuthenticationCredentialsNotFoundException(AuthenticationCredentialsNotFoundException e){
+        logger.error("Causa: [ Auth ] - Mensagem: [ {} ]", e.getMessage());
+        var responseError = responseError("Auth", e, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(responseError,HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseError> handleGenircException(Exception e){
         logger.error("Causa: [ Erro interno ] - Mensagem: [ {} ]", e.getMessage());

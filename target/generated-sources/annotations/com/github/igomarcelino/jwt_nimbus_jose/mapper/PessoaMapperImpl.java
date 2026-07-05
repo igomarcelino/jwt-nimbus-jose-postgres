@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-05T08:54:58-0300",
+    date = "2026-07-05T13:05:54-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.12 (Amazon.com Inc.)"
 )
 @Component
@@ -21,13 +21,13 @@ public class PessoaMapperImpl implements PessoaMapper {
             return null;
         }
 
-        Pessoa pessoa = new Pessoa();
+        Pessoa.PessoaBuilder pessoa = Pessoa.builder();
 
-        pessoa.setNome( dto.nome() );
-        pessoa.setCpf( dto.cpf() );
-        pessoa.setEmail( dto.email() );
+        pessoa.nome( dto.nome() );
+        pessoa.cpf( dto.cpf() );
+        pessoa.email( dto.email() );
 
-        return pessoa;
+        return pessoa.build();
     }
 
     @Override

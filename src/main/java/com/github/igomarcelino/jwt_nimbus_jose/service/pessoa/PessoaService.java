@@ -61,4 +61,9 @@ public class PessoaService {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new PessoaNotFoundException("Pessoa nao localizada!"));
     }
+
+    public Pessoa getByEmail(String email){
+        return pessoaRepository.findByEmail(email)
+                .orElseThrow(() -> new PessoaNotFoundException("Pessoa nao localizada"));
+    }
 }

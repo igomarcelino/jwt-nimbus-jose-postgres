@@ -4,10 +4,12 @@ import com.github.igomarcelino.jwt_nimbus_jose.dto.aviso.AvisoRequestDTO;
 import com.github.igomarcelino.jwt_nimbus_jose.dto.aviso.AvisoResponseDTO;
 import com.github.igomarcelino.jwt_nimbus_jose.mapper.AvisoMapper;
 import com.github.igomarcelino.jwt_nimbus_jose.model.entity.Aviso;
+import com.github.igomarcelino.jwt_nimbus_jose.model.entity.Pessoa;
 import com.github.igomarcelino.jwt_nimbus_jose.repository.AvisoRepository;
 import com.github.igomarcelino.jwt_nimbus_jose.service.aviso.exceptions.AvisoNotFoundException;
 import com.github.igomarcelino.jwt_nimbus_jose.service.pessoa.PessoaService;
 import jakarta.transaction.Transactional;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +30,9 @@ public class AvisoService {
     public AvisoResponseDTO save(AvisoRequestDTO avisoRequestDTO){
         Aviso aviso =  avisoMapper.toEntity(avisoRequestDTO);
         aviso.setLido(false);
-        //var principal = (Pessoa) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        aviso.setPessoa(pessoaService.getEntityById(1L));
+        // Agora conseguimos recuperar a pessoa logada
+        var principal =pessoaService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        aviso.setPessoa(principal);
         var avisoCriado = avisoRepository.save(aviso);
         return avisoMapper.toDto(avisoCriado);
     }

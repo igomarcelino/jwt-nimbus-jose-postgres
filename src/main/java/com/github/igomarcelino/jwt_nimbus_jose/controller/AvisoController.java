@@ -4,6 +4,7 @@ import com.github.igomarcelino.jwt_nimbus_jose.dto.aviso.AvisoRequestDTO;
 import com.github.igomarcelino.jwt_nimbus_jose.dto.aviso.AvisoResponseDTO;
 import com.github.igomarcelino.jwt_nimbus_jose.service.aviso.AvisoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -21,6 +22,7 @@ public class AvisoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_GUEST')")
     public ResponseEntity<AvisoResponseDTO> save(@RequestBody AvisoRequestDTO avisoRequestDTO,
                                                  UriComponentsBuilder builder){
         var aviso = avisoService.save(avisoRequestDTO);
