@@ -23,7 +23,7 @@ public class PessoaServiceIT extends BaseIT {
     @Test
     void save_DevePersistirPessoaComRoles_NoBancoReal() {
         // Arrange
-        var request = new PessoaRequestDTO("Igo Marcelino", "36145216808", "igo@email.com", "senha123");
+        var request = new PessoaRequestDTO("Igo Marcelino", "48095329096", "igo@email.com", "senha123");
 
         // Act
         var response = pessoaService.save(request);
