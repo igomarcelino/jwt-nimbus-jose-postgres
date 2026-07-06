@@ -22,7 +22,7 @@ public class AvisoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('SCOPE_GUEST')")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN') or hasAuthority('SCOPE_EDITOR') or hasAuthority('SCOPE_GUEST')")
     public ResponseEntity<AvisoResponseDTO> save(@RequestBody AvisoRequestDTO avisoRequestDTO,
                                                  UriComponentsBuilder builder){
         var aviso = avisoService.save(avisoRequestDTO);
@@ -31,11 +31,13 @@ public class AvisoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<List<AvisoResponseDTO>> getAll(){
         return ResponseEntity.ok(avisoService.getAll());
     }
 
     @PatchMapping("/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN') or hasAuthority('SCOPE_EDITOR') or hasAuthority('SCOPE_GUEST')")
     public ResponseEntity<AvisoResponseDTO> setLido(@PathVariable Long id){
         return ResponseEntity.ok(avisoService.marcarLido(id));
     }

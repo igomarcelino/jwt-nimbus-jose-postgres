@@ -6,6 +6,7 @@ import com.github.igomarcelino.jwt_nimbus_jose.dto.pessoa.PessoaResponseDTO;
 import com.github.igomarcelino.jwt_nimbus_jose.mapper.PessoaMapper;
 import com.github.igomarcelino.jwt_nimbus_jose.model.entity.Pessoa;
 import com.github.igomarcelino.jwt_nimbus_jose.repository.PessoaRepository;
+import com.github.igomarcelino.jwt_nimbus_jose.service.pessoa.exceptions.PessoaInvalidException;
 import com.github.igomarcelino.jwt_nimbus_jose.service.pessoa.exceptions.PessoaNotFoundException;
 import com.github.igomarcelino.jwt_nimbus_jose.service.roles.RolesService;
 import jakarta.transaction.Transactional;
@@ -65,5 +66,17 @@ public class PessoaService {
     public Pessoa getByEmail(String email){
         return pessoaRepository.findByEmail(email)
                 .orElseThrow(() -> new PessoaNotFoundException("Pessoa nao localizada"));
+    }
+
+    public void criaUsuarioAdmin() {
+        if(pessoaRepository.existsByEmail("admin@email.com")){
+            throw new PessoaInvalidException("Admin ja existe");
+        }
+        var roleAdmin = rolesService.getRoleByName("ADMIN");
+        PessoaRequestDTO pessoaRequestDTO = new PessoaRequestDTO("admin","25504741041","admin@email.com","1234");
+        Pessoa pessoa = pessoaMapper.toEntity(pessoaRequestDTO);
+        pessoa.setSenha(passwordEncoder.encode(pessoaRequestDTO.senha()));
+        pessoa.setRoles(Set.of(roleAdmin));
+        pessoaRepository.save(pessoa);
     }
 }

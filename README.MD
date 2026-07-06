@@ -1,10 +1,53 @@
 
-# 🚀 JWT Nimbus JOSE
 
-Boilerplate desenvolvido com Spring Boot 3 para aplicações REST seguras utilizando Spring Security, OAuth2 Resource Server e Nimbus JOSE + JWT, seguindo boas práticas de arquitetura, testes e organização de código.
+<h1 align="center">
+JWT Nimbus JOSE
+</h1>
+
+<p align="center">
+Boilerplate para construção de APIs REST seguras utilizando <b>Spring Boot 3</b>, <b>Spring Security</b>, <b>OAuth2 Resource Server</b> e <b>Nimbus JOSE + JWT</b>.
+</p>
+
+<p align="center">
+
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green)
+![Spring Security](https://img.shields.io/badge/Spring_Security-6-success)
+![JWT](https://img.shields.io/badge/JWT-RSA-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
+![Maven](https://img.shields.io/badge/Maven-3.9-red)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+</p>
+
 ---
 
-# Tecnologias
+# 📖 Sobre o projeto
+
+Este projeto foi criado com o objetivo de demonstrar, passo a passo, a implementação de autenticação utilizando **JWT assinado com RSA**, empregando os recursos disponibilizados pelo **Spring Security** e pelo **OAuth2 Resource Server**.
+
+Diferente de um simples boilerplate, este repositório possui uma documentação completa explicando cada etapa da implementação, desde a configuração inicial até a validação do Token JWT.
+
+---
+
+# 🎯 Objetivos
+
+Durante o desenvolvimento serão abordados temas como:
+
+- Configuração do Spring Security
+- OAuth2 Resource Server
+- Geração de chaves RSA
+- Autenticação utilizando `AuthenticationManager`
+- Implementação de `UserDetails`
+- Implementação de `UserDetailsService`
+- Geração de Tokens JWT
+- Security Context
+- Controle de acesso baseado em Roles
+- Testes utilizando Bruno
+
+---
+
+# 🚀 Tecnologias
 
 - Java 17
 - Spring Boot 3
@@ -15,208 +58,201 @@ Boilerplate desenvolvido com Spring Boot 3 para aplicações REST seguras utiliz
 - PostgreSQL
 - MapStruct
 - Lombok
+- Maven
 - JUnit 5
 - Mockito
 - Testcontainers
-- Maven
 
 ---
 
-# Objetivos do Projeto
+# 📚 Documentação
 
-Este boilerplate possui como objetivo fornecer uma estrutura pronta contendo:
+Toda a implementação foi organizada em capítulos.
 
-- Cadastro de usuários
-- Controle de Roles
-- Login utilizando JWT
-- Estrutura para OAuth2 Resource Server
-- Arquitetura em camadas
-- DTOs
-- Mappers utilizando MapStruct
-- Tratamento de exceções
-- Testes Unitários
-- Testes de Integração
-- Configuração de Logs
-- Base para futuros projetos
+Cada capítulo representa uma etapa da construção da aplicação.
+
+| Capítulo | Conteúdo |
+|----------|----------|
+| 📦 | [01 - Instalação](docs/01-instalacao.md) |
+| 🏗️ | [02 - Projeto Base](docs/02-projeto-base.md) |
+| 🔑 | [03 - Gerando Chaves RSA](docs/03-gerando-chaves-rsa.md) |
+| 🛡️ | [04 - Configurando Spring Security](docs/04-configurando-spring-security.md) |
+| 👤 | [05 - Integrando ao Spring Security](docs/05-autenticando.md) |
+| 🔐 | [06 - Implementando o Login e Gerando o JWT](docs/06-login.md) |
+| 🔒 | [07 - Security Context](docs/07-security-context.md) |
+| 🧪 | [08 - Validando a Aplicação com Bruno](docs/08-testes.md) |
 
 ---
 
-# Estrutura do Projeto
+# 🗺️ Fluxo da documentação
 
+```text
+Instalação
+      │
+      ▼
+Projeto Base
+      │
+      ▼
+Gerando Chaves RSA
+      │
+      ▼
+Spring Security
+      │
+      ▼
+Authentication
+      │
+      ▼
+Login + JWT
+      │
+      ▼
+Security Context
+      │
+      ▼
+Testes com Bruno
 ```
+
+---
+
+# 🏛️ Arquitetura da aplicação
+
+```mermaid
+flowchart LR
+
+A[Cliente]
+
+-->B[POST /auth/login]
+
+-->C[AuthenticationManager]
+
+-->D[AuthenticationService]
+
+-->E[PessoaRepository]
+
+-->F[(PostgreSQL)]
+
+F --> E
+
+E --> D
+
+D --> C
+
+C --> G[Authentication]
+
+G --> H[TokenService]
+
+H --> I[JWT]
+
+I --> J[Bearer Token]
+
+J --> K[OAuth2 Resource Server]
+
+K --> L[SecurityContextHolder]
+
+L --> M[Controllers]
+```
+
+---
+
+# 🗃️ Modelo Relacional
+
+<p align="center">
+    <img src="docs/images/der.png" width="650">
+</p>
+
+---
+
+# 📂 Estrutura do Projeto
+
+```text
 src
 ├── config
+│   ├── rsa
+│   └── security
 ├── controller
 ├── dto
 ├── mapper
 ├── model
 ├── repository
 ├── service
-├── security (em desenvolvimento)
+│   ├── authentication
+│   ├── aviso
+│   └── pessoa
 ├── exception
 └── test
 ```
 
 ---
 
-# Fluxo da aplicação
+# 🌿 Branches
 
-1. Cadastro do usuário
-2. Atribuição das Roles
-3. Login
-4. Geração do JWT
-5. Validação automática pelo OAuth2 Resource Server
-6. População do SecurityContextHolder
-7. Autorização baseada em Scopes
+Este repositório possui duas branches principais.
 
----
+## projeto-base
 
-# Endpoints
+Contém toda a estrutura inicial da aplicação com:
 
-## Pessoa
+- Arquitetura em camadas
+- CRUD de Pessoas
+- CRUD de Avisos
+- DTOs
+- Mappers
+- Tratamento de exceções
+- Spring Security básico
 
-| Método | Endpoint | Descrição |
-|---------|----------|-----------|
-| POST | /pessoa | Cadastra uma pessoa |
-| GET | /pessoa | Lista todas as pessoas |
-| PUT | /pessoa/set-roles/{id} | Atualiza as Roles |
+Essa branch serve como ponto de partida para acompanhar a documentação.
 
 ---
 
-## Avisos
+## main
 
-| Método | Endpoint | Descrição |
-|---------|----------|-----------|
-| POST | /aviso | Cadastra um aviso |
-| GET | /aviso | Lista avisos |
-| PATCH | /aviso/{id} | Marca aviso como lido |
+Contém a implementação completa apresentada nos capítulos deste tutorial.
 
----
+Incluindo:
 
-## Autenticação
-
-| Método | Endpoint |
-|---------|----------|
-| POST | /auth/login |
-
----
-
-# Exemplo de Login
-
-Request
-
-```json
-{
-    "email":"igo@email.com",
-    "senha":"1234"
-}
-```
-
-Response
-
-```json
-{
-    "accessToken":"eyJhbGciOi..."
-}
-```
+- JWT
+- OAuth2 Resource Server
+- Nimbus JOSE
+- RSA
+- AuthenticationManager
+- UserDetails
+- UserDetailsService
+- SecurityContextHolder
+- Controle por Roles
 
 ---
 
-# Login utilizando Bruno
-
-> Exemplo realizando autenticação e recebendo um JWT.
-
-![Login](docs/images/login.png)
-
----
-
-# Modelo Relacional
-
-O projeto utiliza um modelo simples para demonstrar autenticação baseada em usuários, roles e avisos.
-
-![Diagrama](docs/images/modelo-relacional.png)
-
----
-
-# Testes
-
-O projeto segue uma separação entre testes unitários e testes de integração.
-
-## Testes Unitários
-
-Utilizando
-
-- JUnit 5
-- Mockito
-
-Responsáveis por validar apenas a lógica da aplicação.
-
-Exemplo:
-
-```
-PessoaServiceTest
-AvisoServiceTest
-RolesServiceTest
-```
-
----
-
-## Testes de Integração
-
-Utilizando
-
-- Spring Boot Test
-- Testcontainers
-- PostgreSQL
-
-Responsáveis por validar:
-
-- Persistência
-- Mapeamentos JPA
-- Repositories
-- Services
-- Transações
-
-Exemplo:
-
-```
-PessoaServiceIT
-AvisoServiceIT
-```
-
----
-
-# Logging
-
-O projeto possui configuração de logging para facilitar depuração durante o desenvolvimento.
-
-- Logs coloridos no console
-- Arquivo de log
-- Nível DEBUG apenas para a aplicação
-- WARN para Spring e Hibernate
-
----
-
-# Próximas Implementações
+# 🛣️ Roadmap
 
 - [x] CRUD Pessoa
 - [x] CRUD Aviso
-- [x] Roles
-- [x] Login
-- [ ] JWT Nimbus JOSE
-- [ ] OAuth2 Resource Server
-- [ ] Refresh Token
-- [ ] Testes de Segurança
-- [ ] Docker
-- [ ] Docker Compose
-- [ ] GitHub Actions
-- [ ] Documentação OpenAPI
+- [x] DTOs
+- [x] MapStruct
+- [x] Spring Security
+- [x] JWT
+- [x] Nimbus JOSE
+- [x] OAuth2 Resource Server
+- [x] Controle por Roles
+- [x] Security Context
+- [x] Documentação completa
 
 ---
 
-# Autor
+# 🤝 Contribuindo
 
-Igo Marcelino
+Contribuições são sempre bem-vindas.
+
+Caso encontre algum problema ou tenha sugestões de melhoria, fique à vontade para abrir uma **Issue** ou enviar um **Pull Request**.
+
+---
+
+# 👨‍💻 Autor
+
+**Igo Marcelino**
 
 Backend Java Developer
 
+GitHub: https://github.com/igomarcelino
+
+---
+
+⭐ Se este projeto foi útil para você, considere deixar uma estrela no repositório!
