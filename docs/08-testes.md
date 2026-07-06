@@ -90,7 +90,7 @@ Resposta
 
 
 <p align="center">
-    <img src="images/login_user_admin.png">
+    <img src="docs/images/login_user_admin.png">
 </p>
 
 
@@ -312,23 +312,15 @@ hasAuthority("SCOPE_ADMIN")
 ```mermaid
 flowchart LR
 
-A[Cliente]
-
--->B[Bearer Token]
-
--->C[OAuth2 Resource Server]
-
--->D[JwtDecoder]
-
--->E[SecurityContextHolder]
-
--->F[@PreAuthorize]
-
--->G{Possui a Role?}
+A[Cliente] --> B[Bearer Token]
+B --> C[OAuth2 Resource Server]
+C --> D[JwtDecoder]
+D --> E[SecurityContextHolder]
+E --> F["@PreAuthorize"]
+F --> G{Possui a Role?}
 
 G -->|Sim| H[Controller]
-
-G -->|Não| I[403 Forbidden]
+G -->|Não| I["403 Forbidden"]
 ```
 
 ---
