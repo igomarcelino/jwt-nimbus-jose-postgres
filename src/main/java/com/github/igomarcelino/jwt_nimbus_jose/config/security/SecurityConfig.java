@@ -34,13 +34,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "http://localhost:4173",
-                "http://localhost:49150",
-                "http://10.202.16.85:49150",
-                "http://agenda-exames.hrr.intranet:49150",
-                "http://localhost:8010",
-                "http://localhost:8050",
-                "http://10.202.16.85:8050"
+                "http://localhost:4173"
         ));
 
         config.setAllowedHeaders(List.of("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"));
