@@ -89,7 +89,9 @@ Resposta
 > **Imagem:** Login realizado com sucesso utilizando o Bruno.
 
 
-![login_bruno](docs/images/login_user_admin.png)
+<p align="center">
+    <img src="images/login_user_admin.png">
+</p>
 
 
 ---
@@ -124,29 +126,49 @@ Este fluxo demonstra como automatizar a captura e a utilização do token JWT na
 
 <details>
 <summary><b>1. Criando o ambiente</b></summary>
+
 <br>
-<img src="docs/images/bruno_config_1.png" alt="Criando ambiente" width="800"/>
+
+<img src="images/bruno_config_1.png" alt="Criando ambiente" width="800"/>
+
 <br>
-<img src="docs/images/bruno_config_2.png" alt="Nomeando ambiente" width="800"/>
+
+<img src="images/bruno_config_2.png" alt="Nomeando ambiente" width="800"/>
+
 </details>
 
+---
+
 <details>
-<summary><b>2. Configurando script de teste para salvar variável</b></summary>
+<summary><b>2. Configurando o script para salvar o JWT</b></summary>
+
 <br>
-<img src="docs/images/bruno_config_3.png" alt="Login" width="800"/>
+
+<img src="images/bruno_config_3.png" alt="Login" width="800"/>
+
 <br>
-<img src="docs/images/bruno_config_4.png" alt="Script de teste" width="800"/>
+
+<img src="images/bruno_config_4.png" alt="Script de teste" width="800"/>
+
+<br>
+
+<img src="images/bruno_config_5.png" alt="Execução do login" width="800"/>
+
 </details>
-<br>
-<img src="docs/images/bruno_config_5.png" alt="Execução do login" width="800"/>
-</details>
+
+---
+
 <details>
-<summary><b>3. Configurando a herança de autenticação na coleção</b></summary>
+<summary><b>3. Configurando a autenticação da Collection</b></summary>
+
 <br>
-<img src="docs/images/bruno_config_6.png" alt="Herança de Auth" width="800"/>
-</details>
+
+<img src="images/bruno_config_6.png" alt="Herança de autenticação" width="800"/>
+
 <br>
-<img src="docs/images/bruno_config_7.png" alt="Bearer Token aplicado" width="800"/>
+
+<img src="images/bruno_config_7.png" alt="Bearer Token aplicado" width="800"/>
+
 </details>
 
 
